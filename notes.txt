@@ -1,0 +1,70 @@
+#MANAGED TO CREATE VIRTUAL ENVIROMENT
+GOING TO CREATE A BASIC TKINTER APPLICATION.
+===========================================
+JUST CREATE BASIC SIMPLE SOFTWARE THAT COMMUNICATES 
+WITH THE UI.
+#CREATED BUTTON THAT CAN LOAD MESSAGE, NEED TO LOAD IMAGE
+#MANAGED TO LOAD THE FILE BEFORE THE APPLICATION IS RAN.
+#MANAGED TO CREATE A HIDE AND SHOW IMAGE.
+#MANAGED TO HIDE AND SHOW IMAGE
+
+
+import tkinter as tk
+from tkinter import ttk
+from tkinter import filedialog as fd
+from tkinter.messagebox import showinfo
+
+from tkinter import * 
+
+# create the root window
+root = tk.Tk()
+root.title('Tkinter Open File Dialog')
+root.resizable(False, False)
+root.geometry('300x150')
+
+
+def select_file():
+    filetypes = (
+        ('PNG image', '*.png'),
+        ('All files', '*.*')
+    )
+
+    filename = fd.askopenfilename(
+        title='Open a file',
+        initialdir='/',
+        filetypes=filetypes)
+
+    showinfo(
+        title='Selected File',
+        message=filename
+    )
+
+
+# open button
+open_button = ttk.Button(
+    root,
+    text='Open a File',
+    command=select_file
+)
+
+open_button.pack(expand=True)
+
+
+def hide_me(event):
+    event.widget.pack_forget()
+
+
+# Define a function to show/hide widget
+def show_widget():
+   text.pack()
+def hide_widget():
+   text.pack_forget()
+   text.configure(text="Show", command=show_widget)
+
+text = Label(root, text="Just do it")
+text.place(x=70,y=90)
+hide_widget()
+
+
+# run the application
+root.mainloop()

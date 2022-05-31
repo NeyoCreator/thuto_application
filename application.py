@@ -1,32 +1,41 @@
-import tkinter as tk
+# Import the required libraries
+from tkinter import *
 from tkinter import ttk
-from PIL import ImageTk, Image
+from PIL import Image, ImageTk
 
-#0.ROOT WINDOW
-root = tk.Tk()
-root.geometry('700x500')
-root.resizable(False, False)
-root.title('Button Demo')
+# Create an instance of tkinter frame
+win = Tk()
 
-#1.MESSAGE FUNCTION
-def load_image():
-    print("We are here")
-#Load_Image
-load_button = ttk.Button(
-    root,
-    text='Load Image',
-    command=load_image()
-)
-load_button.pack(
-    ipadx=5,
-    ipady=5,
-    expand=True
-)
+# Set the size of the tkinter window
+win.geometry("700x350")
 
-#2.WORKING WITH IMAGE
-img = ImageTk.PhotoImage(Image.open("image1.PNG"))
-# Create a Label Widget to display the text or Image
-label = ttk.Label(root, image = img)
-label.pack()
 
-root.mainloop()
+# Define a function to show/hide widget
+def show_widget():
+   label.pack()
+   label1.pack()
+   b1.configure(text="Hide", command=hide_widget)
+
+def hide_widget():
+   label.pack_forget()
+   label1.forget()
+   b1.configure(text="Show", command=show_widget)
+
+# Add a Button widget
+b1 = ttk.Button(win, text="Hide", command=hide_widget)
+b1.pack(pady=20)
+
+# Add a label widget
+label = ttk.Label(win, text="Eat, Sleep, Code and Repeat", font=('Aerial 11'))
+label.pack(pady=30)
+
+
+# IMAGE STUFF
+image1 = Image.open("image1.PNG")
+test = ImageTk.PhotoImage(image1)
+label1 = ttk.Label(image=test)
+label1.image = test
+# label1.place(x=50, y=50)
+# label1.forget()
+
+win.mainloop()
